@@ -1,5 +1,6 @@
 import { parseISO, format } from 'date-fns'
 import Image from 'next/image'
+import Link from 'next/link'
 import ptBR from 'date-fns/locale/pt-BR'
 import { GetStaticProps } from 'next'
 import { api } from '../services/api'
@@ -43,7 +44,10 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                 />
 
                 <div className={styles.episodeDetails}>
-                  <a href="">{episode.title}</a>
+                  <Link href={`/episodes/${episode.id}`}>
+                    <a>{episode.title}</a>
+                  </Link>
+                  {/* <a href={`/episodes/${episode.id}`}>{episode.title}</a> */}
                   <p>{episode.members}</p>
                   <span>{episode.publishedAt}</span>
                   <span>{episode.durationAsString}</span>
@@ -84,10 +88,10 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                     />
                   </td>
                   <td>
-                    <a href="">{episode.title}</a>
+                    <a href='#'>{episode.title}</a>
                   </td>
                   <td>{episode.members}</td>
-                  <td>{episode.publishedAt}</td>
+                  <td style={{width: 100}} >{episode.publishedAt}</td>
                   <td>{episode.durationAsString}</td>
                   <td>
                     <button type="button">
